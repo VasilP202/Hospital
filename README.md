@@ -1,4 +1,4 @@
-# Hospital Information System
+# Hospital application
     - FIT VUT
     - Databázové systémy 
     - April 2022
