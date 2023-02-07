@@ -3,9 +3,6 @@
     - Databázové systémy 
     - April 2022
 
-## Authors
-    Vasil Poposki
-
 ## Requirements
     - Python 3.8+
 
