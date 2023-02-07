@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %} Search doctors {% endblock %}
+
+{% block content %}
+
+<div id="pageheader">
+	<h1>Doctors</h1>
+
+	{% if search_doctors %}
+
+		{% if searched %} <p>Searched: <i>{{searched}}</i> </p>{% endif %}
+		{% if not searched or not qs %}
+			<h2>No results...</h2>
+			{% if qs %}
+				<h3>List of all doctors: </h3>
+			{% endif %}
+		{% endif %}
+
+	{% endif %}
+
+</div>
+
+{% for doctor in qs %}
+	<div class="section">
+		<div>
+			<h3>{{ doctor.user.first_name }} {{ doctor.user.last_name }}</h4>
+			<h5>Departments:</h5>
+				{% for dep in doctor.departments.all %}
+					<span>{{ dep }}</span>
+				{% endfor %}
+			
+			<h5>Phone:</h5> <p>{{ doctor.phone }}</p>
+			<h5>Email:</h5> <p>{{ doctor.user.username }}</p>
+		</div>
+	</div>
+{% endfor %}
+
+
+{% endblock %}

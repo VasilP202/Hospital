@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %} Examinations {% endblock %}
+
+{% block content %}
+<div id="pageheader">
+	<h1>Examination records</h1>
+	<p></p>
+</div>
+
+<div class="section">
+    <button><a href="{% url 'add_examination' %}">Add examination</a></button>
+</div>
+{% for exam in examinations %}
+	<div class="section">
+		<div class="preview">
+			<div>
+				<h4><i>{{ exam.date }}</i></h4>
+                <h5>Patient: </h5>
+					<p>
+						{{ exam.pacient.user.first_name }} {{ exam.pacient.user.last_name }}
+						<a href="{% url 'patient_details' exam.pacient.pk %}">({{ exam.pacient }}</a>)
+					</p>
+                <h5>Conducted by doctor: </h5>
+					<p>{{ exam.doctor.user.first_name }} {{ exam.doctor.user.last_name }}({{ exam.doctor }})</p>
+                <h5>Department: </h5><p>{{ exam.department }}</p>
+                <h5>Result of examination: </h5><p>{{ exam.result }}</p>
+				<button><a href="{% url 'edit_examination' exam.pk %}">Edit</a></button>
+				<button><a href="{% url 'delete_examination' exam.pk %}">Delete</a></button>
+			</div>
+		</div>
+	</div>
+{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block title %} Patient details {% endblock %}
+
+{% block content %}
+
+<div id="pageheader">
+    <h1>Patient: <strong>{{ patient.user.first_name }} {{ patient.user.last_name }}</strong></h1>
+    <h4>Username(email):</h4><p>{{ patient.user.username }}</p>
+    <h4>Date of Birth:</h4><p>{{patient.date_of_birth}}</p>
+    <h4>Residence:</h4><p>{{patient.residence}}</p>
+    <h4>Health insurance:</h4><p>{{patient.health_insurance}}</p>
+</div>
+
+<div class="section">
+    <h3>Examinations</h3>
+    <div style="float: left">
+        <button><a href="{% url 'add_examination' %}">Add new</a></button>
+    </div>
+    {% for examination in examinations %}
+        <div class="preview">
+            <div>
+                <h5>Date:</h5> <p>{{ examination.date }}</p>
+                <h5>Conducted by doctor: </h5>
+                <p>{{ examination.doctor.user.first_name }} {{ examination.doctor.user.last_name }} ({{ examination.doctor }})</p>
+                <h5>Department: </h5><p>{{ examination.department }}</p>
+                <h5>Result of examination: </h5><p>{{ examination.result }}</p>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+<div class="section">
+    <h3>Hospitalizations</h3>
+    <div style="float: left">
+        <button><a href="{% url 'add_hospitalization' %}">Add new</a></button>
+    </div>
+    {% for hospitalization in hospitalizations %}
+        <div class="preview">
+            <div>
+                <h5>Date:</h5> <p>{{ hospitalization.date }}</p>
+                <h5>Admitted by doctor: </h5>
+                <p>{{ hospitalization.doctor.user.first_name }} {{ hospitalization.doctor.user.last_name }} ({{ hospitalization.doctor }})</p>
+                <h5>Reason of hospitalization: </h5><p>{{ hospitalization.purpose }}</p>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+<div class="section">
+    <h3>Dosages</h3>
+    <div style="float: left">
+        <button><a href="{% url 'add_dosage' %}">Add new</a></button>
+    </div>
+    {% for dosage in dosages %}
+        <div class="preview">
+            <div>
+                <h5><i>{{ dosage.date }}</i></h5>
+                <h5>Medicine: </h5><p>{{ dosage.medicine }}</p>
+                <h5>Application method: </h5><p>{{ dosage.get_application_method_display }}</p>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

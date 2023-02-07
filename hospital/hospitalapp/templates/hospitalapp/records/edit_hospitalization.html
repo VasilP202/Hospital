@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %} Edit hospitalization {% endblock %}
+
+{% block content %}
+<div id="pageheader">
+	<h1>Edit hospitalization record</h1>
+	<p></p>
+</div>
+
+<div class="section">
+    <form action="{% url 'edit_hospitalization' hospitalization.pk %}" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Edit">
+    </form>
+</div>
+
+{% endblock %}

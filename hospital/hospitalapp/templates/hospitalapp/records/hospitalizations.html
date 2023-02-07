@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %} Hospitalizations {% endblock %}
+
+{% block content %}
+<div id="pageheader">
+	<h1>Hospitalization records</h1>
+	<p></p>
+</div>
+
+<div class="section">
+    <button><a href="{% url 'add_hospitalization' %}">Add hospitalization</a></button>
+</div>
+{% for hosp in hospitalizations %}
+	<div class="section">
+		<div class="preview">
+			<div>
+				<h4><i>{{ hosp.date }}</i></h4>
+                <h5>Patient: </h5>
+					<p>
+						{{ hosp.pacient.user.first_name }} {{ hosp.pacient.user.last_name }}
+						<a href="{% url 'patient_details' hosp.pacient.pk %}">({{ hosp.pacient }}</a>)
+					</p>
+                <h5>Admitted by doctor: </h5>
+					<p>{{ hosp.doctor.user.first_name }} {{ hosp.doctor.user.last_name }}({{ hosp.doctor }})</p>
+                <h5>Reason of hospitalization: </h5><p>{{ hosp.purpose }}</p>
+				<button><a href="{% url 'edit_hospitalization' hosp.pk %}">Edit</a></button>
+				<button><a href="{% url 'delete_hospitalization' hosp.pk %}">Delete</a></button>
+
+			</div>
+		</div>
+	</div>
+{% endfor %}
+
+{% endblock %}

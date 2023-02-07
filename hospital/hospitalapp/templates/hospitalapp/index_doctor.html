@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %} Home {% endblock %}
+
+{% block content %}
+
+<div id="pageheader">
+	<h1>My information</h1>
+</div>
+
+
+
+<div class="section">
+	<div>
+		<h3>{{ user.first_name }} {{ user.last_name }}</h4>
+		<h5>Departments:</h5>
+			{% for dep in user.doctor.departments.all %}
+				<p>{{ dep }}</p>
+			{% endfor %}
+		
+		<h5>Phone:</h5> <p>{{ user.doctor.phone }}</p>
+		<h5>Email(username):</h5> <p>{{ user.username }}</p>
+	</div>
+</div>
+
+{% endblock %}

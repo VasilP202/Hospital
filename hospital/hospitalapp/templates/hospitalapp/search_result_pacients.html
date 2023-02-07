@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %} Search results {% endblock %}
+
+{% block content %}
+
+<div id="pageheader">
+	<h2>Patients</h2>
+	{% if searched %} <p>Searched: <i>{{ searched }}</i> </p>{% endif %}
+	{% if not searched or not qs %}
+		<h2>No results...</h2>
+		{% if qs %}
+			<h3>List of all patients: </h3>
+		{% endif %}
+	{% endif %}
+</div>
+
+{% for patient in qs %}
+	<div class="section">
+		<div class="preview">
+			<div>
+				<h4>{{ patient.user.first_name }} {{ patient.user.last_name }}</h4>
+				<button><a href="{% url 'patient_details' patient.pk %}">Show patient</a></button>
+			</div>
+		</div>
+	</div>
+{% endfor %}
+
+{% endblock %}

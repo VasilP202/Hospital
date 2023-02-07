@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %} Dosages {% endblock %}
+
+{% block content %}
+<div id="pageheader">
+	<h1>Dosage records</h1>
+	<p></p>
+</div>
+
+<div class="section">
+    <button><a href="{% url 'add_dosage' %}">Add dosage</a></button>
+	<div class="preview">
+		<h5><a style="text-decoration: underline;" href="{% url 'medications' %}">List of used medications</a></h5>
+	</div>
+</div>
+{% for dosage in dosages %}
+	<div class="section">
+		<div class="preview">
+			<div>
+				<h4><i>{{ dosage.date }}</i></h4>
+                <h5>Patient: </h5>
+					<p>
+						{{ dosage.pacient.user.first_name }} {{ dosage.pacient.user.last_name }}
+						<a href="{% url 'patient_details' dosage.pacient.pk %}">({{ dosage.pacient }}</a>)
+					</p>
+                <h5>Medicine: </h5><p>{{ dosage.medicine }}</p>
+                <h5>Application method: </h5><p>{{ dosage.get_application_method_display }}</p>
+				<button><a href="{% url 'delete_dosage' dosage.pk %}">Delete</a></button>
+			</div>
+		</div>
+	</div>
+{% endfor %}
+
+{% endblock %}

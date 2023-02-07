@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %} Home {% endblock %}
+
+{% block content %}
+<div id="pageheader">
+	<h1>Add examination record</h1>
+	<p></p>
+</div>
+
+<div class="section">
+    <form action="{% url 'add_hospitalization' %}" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Create">
+    </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %} Medications {% endblock %}
+
+{% block content %}
+<div id="pageheader">
+	<h1>List of used medications</h1>
+	<p></p>
+</div>
+
+{% for medication in medications %}
+	<div class="section">
+		<div class="preview">
+			<div>
+                <p>Title: <strong>{{ medication.title }}</strong></p>
+                <p>Active substance: <i>{{ medication.active_substance }}</i></p>
+                <p>Medication strenght: <i>{{ medication.medicine_strenght }}mg</i></p>
+                <p>Contraindications/side effects: <i>{{ medication.contraindications }}</i></p>
+			</div>
+		</div>
+	</div>
+{% endfor %}
+
+{% endblock %}

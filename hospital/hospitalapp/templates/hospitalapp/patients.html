@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %} Search results {% endblock %}
+
+{% block content %}
+
+<div id="pageheader">
+	<h1>Patients</h1>
+</div>
+
+{% for patient in patients %}
+	<div class="section">
+		<div class="preview">
+			<div>
+				<h4>{{ patient.user.first_name }} {{ patient.user.last_name }} ({{ patient.user.username }})</h4>
+				<button><a href="{% url 'patient_details' patient.pk %}">Show patient</a></button>
+			</div>
+		</div>
+	</div>
+{% endfor %}
+
+{% endblock %}

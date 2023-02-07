@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %} Home {% endblock %}
+
+{% block content %}
+
+<div id="pageheader">
+	<h1>My history</h1>
+	<p></p>
+</div>
+
+
+<div class="section">
+	<h2>Examinations</h2>
+	{% for examination in examinations %}
+		<div class="preview">
+			<div>
+				{{ examination }}
+			</div>
+		</div>
+	{% endfor %}
+</div>
+<div class="section">
+	<h2>Hospitalizations</h2>
+	{% for hospitalization in hospitalizations %}
+		<div class="preview">
+			<div>
+				{{ hospitalization }}
+			</div>
+		</div>
+	{% endfor %}
+</div>
+<div class="section">
+	<h2>Dosages</h2>
+	{% for dosage in dosages %}
+		<div class="preview">
+			<div>
+				{{ dosage }}
+			</div>
+		</div>
+	{% endfor %}
+</div>
+
+{% endblock %}
